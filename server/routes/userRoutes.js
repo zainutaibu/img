@@ -1,23 +1,26 @@
-import express from 'express'
+import express from 'express';
 import {
-    userCredits,
-    paymentRazorpay,
-    verifyRazorpay,
-    registerUser,
-    loginUser,
-    paymentStripe,
-    verifyStripe
-} from '../controllers/UserController.js'
-import authUser from '../middlewares/auth.js'
+  userCredits,
+  paymentRazorpay,
+  verifyRazorpay,
+  registerUser,
+  loginUser,
+  paymentStripe,
+  verifyStripe
+} from '../controllers/UserController.js';
+import authUser from '../middlewares/auth.js';
 
-const userRouter = express.Router()
+const router = express.Router();
 
-userRouter.post('/register', registerUser)
-userRouter.post('/login', loginUser)
-userRouter.get('/credits', authUser, userCredits)
-userRouter.post('/pay-razor', authUser, paymentRazorpay)
-userRouter.post('/verify-razor', verifyRazorpay)
-userRouter.post('/pay-stripe', authUser, paymentStripe)
-userRouter.post('/verify-stripe', authUser, verifyStripe)
+// Public routes
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
-export default userRouter
+// Protected routes
+router.get('/credits', authUser, userCredits);
+router.post('/pay-razor', authUser, paymentRazorpay);
+router.post('/verify-razor', authUser, verifyRazorpay);
+router.post('/pay-stripe', authUser, paymentStripe);
+router.post('/verify-stripe', authUser, verifyStripe);
+
+export default router;
