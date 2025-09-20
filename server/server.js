@@ -13,7 +13,7 @@ const app = express();
 // ----------------------
 app.use(express.json());
 app.use(cors({
-  origin: ["https://imagify-lovat.vercel.app"],
+  origin: ["https://img-seven-chi.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"], // optional, restrict HTTP methods
   credentials: true // optional, allow cookies if needed
 }));
